@@ -11,13 +11,13 @@ The goal of **domain generalization** is therefore to develop models that perfor
 
 The projects are as follows, with the hyperlinks attached:
 
-- [Project 1 (Beginner Level): Benchmarking Generalization Methods for Cross-Hospital Prediction](#proj1)
-- [Project 2 (Intermediate Level): Feature Selection](#proj2)
+- [Project 1 (Beginner Level 👍): Benchmarking Generalization Methods for Cross-Hospital Prediction](#proj1)
+- [Project 2 (Intermediate Level 🧩): Feature Selection for Cross-Hospital Generalization](#proj2)
 
 
 
 ## <a id="proj1"></a> Project 1: Benchmarking Generalization Methods for Cross-Hospital Prediction
-AI Experience Level: **Beginner**
+AI Experience Level: **Beginner 👍**
 
 Project Type: **Evaluation**
 
@@ -230,12 +230,10 @@ Please also polish the figures, table captions, and appendix materials. The appe
 
 
 
-## <a id="proj2"></a> Project 2: Feature Selection
-AI Experience Level: **Intermediate**
+## <a id="proj2"></a> Project 2: Feature Selection for Cross-Hospital Generalization
+AI Experience Level: **Intermediate  🧩**
 
 Project Type: **New Method**
-
-Motivation
 
 Clinical prediction models often use features $X$ whose distributions and relationships with outcomes $Y\mid X$ differ across hospitals. Although some of these features may be relevant or correlated with the outcome, and thus improve performance, they might also make the model less reliable at a new hospital. Thus, simply removing features that vary across hospitals -- which might allow for a more generalizable model -- can also remove important clinical information.
 
@@ -251,7 +249,9 @@ variation in its relationship with the outcome across hospitals
 variation in its distribution across hospitals
 ability to predict hospital identity -->
 
-* RQ2: Can stability-aware feature selection improve unseen-site performance?The goal here is to develop a simple feature-selection method that considers both utility and cross-site stability, for example: ```Feature X_i Score = Predictive Utility - λ × Instability```
+* RQ2: Can stability-aware feature selection improve performance on unseen hospital sites? The goal is to develop a simple feature-selection method or score that considers both feature utility in prediction of the outcome, and stability or variance across sites in the training data, for example: 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```Feature X_i Score = Predictive Utility - λ × Instability```
 <!-- 
 Compare against:
 
@@ -321,3 +321,5 @@ an analysis of which EHR feature types are most associated with poor transportab
 <!-- StableMate: a statistical method to select stable predictors in omics data -->
 <!-- A Theoretical Analysis on Independence-driven Importance Weighting for Covariate-shift Generalization -->
 <!-- - [Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction](Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction) -->
+
+<!-- A Theoretical Analysis on Independence-driven Importance Weighting for Covariate-shift Generalization -->
