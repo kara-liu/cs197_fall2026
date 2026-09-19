@@ -13,15 +13,15 @@ This course is based on a quarter-long project that you will complete in groups 
    * In Weeks 5-10, you will choose a specialized project to own for the rest of the quarter, culminating in a final presentation and report.
 
 We provide four project options, all of which are focused on AI and use tabular healthcare data. The projects are summarized below, with the hyperlinks attached. We separate based on your AI experience level, but emphasize that they should not vary in workload required or the grading rubric applied.
-* [Projects 1 & 2: Generalization](#proj1_generalization/README.md)
+* [Projects 1 & 2: Generalization](proj1_generalization/README.md)
    * *Project 1 // Beginner Level 👍 // Benchmarking Generalization Methods for Cross-Hospital Prediction* - This project will compare different existing strategies for improving model generalization across different hospital sites.
    * *Project 2 // Intermediate Level 🧩 // Feature Selection* - This project will create a new method for selecting predictive features for optimal model generalization across hospital sites.
 
 
-* [Projects 3 & 4: Representation Learning](#proj2_representation/README.md)
+* [Projects 3 & 4: Representation Learning](proj2_representation/README.md)
    * *Project 3 // Intermediate Level 🧩 //  Evaluating Numerical Preprocessing Methods for Tabular Representation Learning* - This project investigates efficacy of different strategies for embedding numerical values in a tabular representation model. 
    * *Project 4 // Advanced Level 🌀 // Information Retention in Tabular Representation Learning* - This project investigates what information is retained in a latent representation as we vary tabular data complexity. 
-   
+
 ## Getting started 
 
 ### Data Access
