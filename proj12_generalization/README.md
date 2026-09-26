@@ -9,14 +9,14 @@ This problem is particularly important in healthcare applications, when model pr
 
 The goal of **domain generalization** is therefore to develop models that perform well on previously unseen sites using only information available from the training sites. 
 
-The projects are as follows, with the hyperlinks attached:
+<!-- The projects are as follows, with the hyperlinks attached:
 
 - [Project 1 (Beginner Level 👍): Benchmarking Generalization Methods for Cross-Hospital Prediction](#proj1)
-- [Project 2 (Intermediate Level 🧩): Feature Selection for Cross-Hospital Generalization](#proj2)
+- [Project 2 (Intermediate Level 🧩): Feature Selection for Cross-Hospital Generalization](#proj2) -->
 
 
 
-## <a id="proj1"></a> Project 1: Benchmarking Generalization Methods for Cross-Hospital Prediction
+<!-- ## <a id="proj1"></a> Project 1: Benchmarking Generalization Methods for Cross-Hospital Prediction
 AI Experience Level: **Beginner 👍**
 
 Project Type: **Evaluation**
@@ -225,81 +225,42 @@ This week, the goal is to finish the paper and prepare the final presentation.
 Please also polish the figures, table captions, and appendix materials. The appendix should include feature lists, missingness rates, cohort details, and any additional fairness tables that are too large for the main paper. The final presentation should tell the same story as the paper in a simpler form: what question we asked, why missingness matters for fairness, what experiments we ran, what we found, and what the limitations are. --> 
 
 
-
-
-
-
-
 ## <a id="proj2"></a> Project 2: Feature Selection for Cross-Hospital Generalization
 AI Experience Level: **Intermediate  🧩**
 
 Project Type: **New Method**
 
-Clinical prediction models often use features $X$ whose distributions and relationships with outcomes $Y\mid X$ differ across hospitals. Although some of these features may be relevant or correlated with the outcome, and thus improve performance, they might also make the model less reliable at a new hospital. Thus, simply removing features that vary across hospitals -- which might allow for a more generalizable model -- can also remove important clinical information.
+Last updated: **September 25, 2026** 
+Clinical prediction models are often trained using features $X$ whose distributions and relationships with an outcome $Y$ vary across hospitals. Some of these features may be highly predictive of $Y$ within the hospitals used for training the models, yet rely on site-specific patient populations, clinical workflows, measurement practices, or treatment patterns. Consider if hospitals collect blood pressure i measurements one way, but then are applied to a different hospital with a different workflow. A model that relies heavily on such features may therefore perform poorly when deployed at a new hospital.
 
-This project studies the tradeoff between feature predictive utility and cross-site stability. Specifically, if we have data from $K$ hospitals during training, how can we use heterogeneity across the observed hospitals to identify features that are likely to generalize well to a new, unseen hospital?
+At the same time, variation across hospitals does not necessarily mean that a feature should be removed. A clinically important variable may differ substantially across sites while still containing useful and transportable information about the outcome. In the example above, if we are predicting hypertension, we wouldn't want to remove blood pressure measurements just because they might vary across hospital settings. Removing every feature that exhibits cross-hospital variation could therefore sacrifice both predictive performance and clinical validity.
 
-The project has four guiding research questions (RQ):
-* RQ1: Which features are predictive but unstable across hospitals?
-<!-- 
-For each feature, characterize:
+This project studies the tradeoff between *predictive utility* and *cross-hospital stability*. Suppose we are given data from $K$ observed hospitals during training, and no access to data from the eventual target hospital. Note, the exact formulation in math is the following: Suppose we are given data $(X_1, Y_1) \sim H_1, \ldots (X_K, Y_K) \sim H_K$ sampled from $K$ different hospital environments $H_1 \ldots H_K$, but we do not have data from an unseen hospital $H_{K+1}$. 
 
-predictive utility for the outcome
-variation in its relationship with the outcome across hospitals
-variation in its distribution across hospitals
-ability to predict hospital identity -->
+Under these assumptions, the central question is:
 
-* RQ2: Can stability-aware feature selection improve performance on unseen hospital sites? The goal is to develop a simple feature-selection method or score that considers both feature utility in prediction of the outcome, and stability or variance across sites in the training data, for example: 
+> **Can heterogeneity across the observed hospitals help us identify which EHR features are likely to hurt generalization to an unseen hospital, while retaining features that are clinically useful despite some cross-site variation?**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```Feature X_i Score = Predictive Utility - λ × Instability```
-<!-- 
-Compare against:
+The project has four guiding research questions (RQs):
 
-all features
-standard predictive feature selection / LASSO
-stability-only feature selection
-hospital-identity-based feature removal -->
+- **RQ1: Which features are predictive but unstable across hospitals?**  
+  How should we measure feature instability, and which notions of instability are most informative for predicting future generalization failure?
 
-* RQ3: What is the internal vs external performance tradeoff?
+- **RQ2: Can stability-aware feature selection improve performance on unseen hospitals?**  
+  The goal is to develop a simple feature-selection method that considers both predictive utility and cross-site stability. For example:
 
-<!-- Determine whether removing unstable features:
+  ```text
+  Feature Xi Score = Predictive Utility - λ × Instability
+  ```
+   The exact definition of `Instability` will be developed and evaluated during the project.
 
-decreases performance within training hospitals
-improves performance on unseen hospitals
-produces a useful tradeoff between the two -->
 
-* RQ4: What types of EHR features are most unstable? That is, are there patterns in what features makes a prediction model generalize poorly? 
+- **RQ3: What is the tradeoff between internal and external performance?**
+      Does removing unstable features improve performance on unseen hospitals at the cost of accuracy within the training hospitals?
 
-<!-- Compare feature categories such as:
+- **RQ4: What types of EHR features are most associated with poor generalization?** 
+   Are particular feature classes—such as physiologic measurements, procedures, medications, missingness indicators, or healthcare-process variables—systematically more unstable or more harmful to cross-hospital transportability?
 
-clinical / physiologic measurements
-demographics
-diagnoses
-medications
-procedures
-missingness indicators
-measurement / workflow variables -->
-
-<!-- Ask whether particular categories disproportionately contribute to cross-site performance degradation.
-
-Validation
-
-Use leave-one-hospital-out experiments within the training hospitals to develop the feature-selection method.
-
-After the method is finalized, evaluate it on completely held-out hospitals that were never used for feature selection or tuning. -->
-
-<!-- Expected Outcome
-
-The goal is to understand:
-
-Feature Properties -> Cross-Site Instability -> Generalization
-
-A successful project should produce:
-
-a measure of feature instability,
-a simple stability-aware feature-selection strategy,
-comparison against standard feature-selection baselines, and
-an analysis of which EHR feature types are most associated with poor transportability. -->
 
 
 ### Week 0 (9/21 - 9/27): 
@@ -315,11 +276,71 @@ an analysis of which EHR feature types are most associated with poor transportab
 **Assignments:** 
 * See course website for what is due. You will typically have a progress report due Saturday evening and often an assignment due Wednesday morning. This week you have a progress report due Saturday. Since it is your first week, you may not have much to report. 
 
-### Weeks 1-10: TBD 
+### Week 1 (9/28 - 10/3):
 
-</br>
-<!-- StableMate: a statistical method to select stable predictors in omics data -->
-<!-- A Theoretical Analysis on Independence-driven Importance Weighting for Covariate-shift Generalization -->
-<!-- - [Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction](Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction) -->
+**Goals**: 
+* Understand the structure of the eICU dataset, including available features, outcomes, and hospital identifiers.
+* Become familiar with several ways prior work has defined or identified unstable features across environments.
+* Begin thinking about: why a feature can be predictive within one hospital but unreliable across hospitals. Think about which types of EHR features may be especially vulnerable to cross-hospital instability.
+
+
+
+**Readings**: In some of these papers, the methodology may be challenging. Prioritize understanding the motivation and intuition. You can use AI to help you understand the challenging parts. 
+- [Learning Optimal Features via Partial Invariance](https://ojs.aaai.org/index.php/AAAI/article/view/25875) - Focus on the main idea: why requiring complete hospital invariance across environments may remove useful predictive information.
+- [Generalization in Clinical Prediction Models: The Blessing and Curse of Measurement Indicator Variables](https://pmc.ncbi.nlm.nih.gov/articles/PMC8238368/) - Focus on why variables describing whether or how something was measured can be predictive within a hospital yet fail to generalize across hospitals.
+- [Stable Prediction across Unknown Environments](https://dl.acm.org/doi/10.1145/3219819.3220082) - First, understand what does "un/stable prediction" mean? Then on the distinction between stable and unstable relationships and why ordinary prediction models may exploit variable relationships that will then fail under distribution shift, i.e., on different hospital environments.
+- [Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction](https://www.nature.com/articles/s41467-020-19551-w) - Focus on how feature importance and predictive performance vary across healthcare systems, and what this suggests about cross-site transportability.
 
 <!-- A Theoretical Analysis on Independence-driven Importance Weighting for Covariate-shift Generalization -->
+
+
+**Assignments & Tasks**: 
+- Review lecture slides for this week.
+- By Wednesday, assuming you applied for it last week as expected, you should have been granted access by PhysioNet to the full eICU dataset. If you have not received an email by then, then email me and include the date you applied.
+- After you get data access, follow the rest of the instructions on ``Getting Started`` to download the data.
+- Then you should run the notebook `week1_explore_eicu_data.ipynb`. This achieves two purposes: 
+   - First, you should have a good understanding of the underlying dataset, what features are available, how they are reprsented, and what clinical labels exist. This will help you a lot as the quarter progresses. 
+   - Second, this notebook will generate the dataframe `../data/clean_dataset.parquet` which you will need for the project! 
+- For Assignment 1 (due next week): This should be done solo. All other assignments will be done in your group. 
+   - Please reread the paper from Week 0 [Towards global model generalizability: independent cross-site feature evaluation for patient-level risk prediction models using the OHDSI network](https://pmc.ncbi.nlm.nih.gov/articles/PMC11031239/) (for Part A: Read a Paper)
+   - Turn in your outputs of section *3. Section Starter: Now it's your turn!* in `week1_explore_eicu_data.ipynb` as a pdf (as this assignment's Part 2: Section Starter Task). 
+   - Ideally, you'd have finished this by 10/4 Week 2 Monday so you don't get behind for next week, but no worries if not :) 
+* For Progress Report 1 (due Saturday): Meet with your project group and submit what you all want to accomplish for Week 2. [See the website](https://web.stanford.edu/class/cs197/assignments/project.html#progress-reports) for how we expect project reports to be structured.
+
+
+
+### Week 2 (10/5 - 10/11):
+
+
+**Goals:**
+- Pick a meaningful train/heldout data split such that we see a large cross-hospital generalization gaps. This can be done by testing different "types" of hospital-to-hospital transfers, and probing which may have the biggest data shifts. 
+- Finalize the prediction task(s), eligible hospitals, and train/held-out hospital splits that will be used throughout the project. (Generalization gaps are specific to the prediction task!)
+- Train simple prediction models and compare internal (within the same hospital) versus cross-hospital performance.
+- Begin exploring & thinking about which features appear important for prediction and which features differ substantially across hospitals.
+
+**Readings:**
+
+- Revisit [Towards global model generalizability: independent cross-site feature evaluation for patient-level risk prediction models using the OHDSI network](https://pmc.ncbi.nlm.nih.gov/articles/PMC11031239/) - Focus on how the authors define cross-site evaluation, how they construct feature sets across sites, and what information from the different sites is used during feature selection.
+
+- [Evaluation of clinical prediction models (part 1): from development to external validation](https://www.bmj.com/content/384/bmj-2023-074819) - Focus on **internal-external cross-validation**.
+
+- Optional: Revisit [Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction](https://www.nature.com/articles/s41467-020-19551-w) - Focus on how predictive performance and feature importance change across healthcare systems.
+
+**Assignments & Tasks:**
+- Finalize the main prediction outcome(s) $Y$ that your group will use, e.g., mortality, heart attack at 48 hours, etc. Review the week1 notebook's description of timing of outcomes.Also finalize what features $X$ you want to use to predict $Y$.  
+- Identify hospitals with sufficient sample size and outcome prevalence for reliable evaluation.
+- Define your data split. You should do this several times until you find a large gap. For example, split on numer of bed counts, hospital's region in the US, etc.
+  - Training data = A set of $K$ hospitals that can be used during model development. You should have a pretty good sample size overall (i.e. > 10k patients across $K$ hospitals)
+  - Heldout data = Several (but <10) **held-out hospitals that should not be used for feature selection or model tuning**. (this was our $K+1$ above). 
+- For each outcome $Y$, train a simple baseline model using the $K$ training hospitals. For example, XGBoost or logistic regression.
+- Evaluate performance within the training distribution and separately on each held-out hospital.
+- Create at least one figure showing the **generalization gap across hospitals**, i.e., Internal training data performance minus the Held-Out hospital performance
+- Begin exploring possible explanations for the largest gaps. Do we think the biggest gap will come from:
+  - differences in patient populations
+  - outcome prevalence
+  - feature distributions
+  - missingness rates
+  - hospital-specific feature importance
+- Assignment 1 due Wednesday. Progress Report 2 due Saturday, and should describe your experiments this week. 
+- Assignment 2: Related Work assigned. Read the description on the website. Nearest neighbor papers: 
+   - 
