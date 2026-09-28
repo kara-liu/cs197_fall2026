@@ -45,7 +45,35 @@ Project Goals
 * See course website for what is due. You will typically have a progress report due Saturday evening and often an assignment due Wednesday morning. This week you have a progress report due Saturday. Since it is your first week, you may not have much to report. 
 
 
-### Weeks 1-10: TBD 
+### Week 1 (9/28 - 10/3):
+
+**Goals**: 
+* Understand the structure of the eICU dataset, including available features, outcomes, and hospital 
+* Become familiar with the different distributions that numerical variables can have in real tabular data. (For example, highly skewed, gaussian, contains outliers, or contain many repeated values.)
+* Understand how prior works have represented numerical data, and begin thinking about: what information about a numerical variable should a good patient representation preserve? For example, should nearby values remain nearby? Should extreme values remain distinguishable? Should multi-modal structure be preserved?
+
+
+
+**Readings**: In some of these papers, the methodology may be challenging. Prioritize understanding the motivation and intuition. You can use AI to help you understand the challenging parts. 
+- [Modeling Tabular Data using Conditional GAN](https://arxiv.org/abs/1907.00503) - Focus on Mode-Specific Normalization. Understand why the authors argue that simply scaling a continuous feature may be inadequate sometimes. 
+- [On Embeddings for Numerical Features in Tabular Deep Learning](https://arxiv.org/abs/2203.05556) - Focus on the intuition behind piecewise-linear encoding (PLE) and how this differs from giving the model a single standardized scalar.
+- [Representation Learning for Tabular Data: A Comprehensive Survey](https://arxiv.org/abs/2504.16109) -- Revisit this paper from last week. Revisit the sections discussing the unique challenges of tabular features and feature representations. Focus on how numerical and categorical features differ from other data modalities.
+- [Binning as a Pretext Task: Improving Self-Supervised Learning in Tabular Domains](http://proceedings.mlr.press/v235/lee24v.html?utm_source=chatgpt.com) -- Focus on the intuition behind quantile binning.
+
+
+**Assignments & Tasks**: 
+- Review lecture slides for this week.
+- By Wednesday, assuming you applied for it last week as expected, you should have been granted access by PhysioNet to the full eICU dataset. If you have not received an email by then, then email me and include the date you applied.
+- After you get data access, follow the rest of the instructions on ``Getting Started`` to download the data.
+- Then you should run the notebook `week1_explore_eicu_data.ipynb`. This achieves two purposes: 
+   - First, you should have a good understanding of the underlying dataset, what features are available, how they are reprsented, and what clinical labels exist. This will help you a lot as the quarter progresses. 
+   - Second, this notebook will generate the dataframe `../data/clean_dataset.parquet` which you will need for the project! 
+- Suggested but optional exploration: Using the prepared eICU dataset, choose approximately 8–10 numerical variables. Analyze and plot their distributions. Are there different patterns for what numerical variables look like?  
+- For Assignment 1 (due next week): This should be done solo. All other assignments will be done in your group. 
+   - Please reread the paper from this week [On Embeddings for Numerical Features in Tabular Deep Learning](https://arxiv.org/abs/2203.05556)  (for Part A: Read a Paper)
+   - Turn in your outputs of section *3. Section Starter: Now it's your turn!* in `week1_explore_eicu_data.ipynb` as a pdf (as this assignment's Part 2: Section Starter Task). 
+   - Ideally, you'd have finished this by 10/4 Week 2 Monday so you don't get behind for next week, but no worries if not :) 
+* For Progress Report 1 (due Saturday): Meet with your project group and submit what you all want to accomplish for Week 2. [See the website](https://web.stanford.edu/class/cs197/assignments/project.html#progress-reports) for how we expect project reports to be structured.
 
 <br>
 
@@ -265,4 +293,30 @@ The four broad project goals are:
 * See course website for what is due. You will typically have a progress report due Saturday evening and often an assignment due Wednesday morning. This week you have a progress report due Saturday. Since it is your first week, you may not have much to report. 
 
 
-### Weeks 1-10: TBD
+### Week 1 (9/28 - 10/3):
+
+**Goals**: 
+* Understand the structure of the eICU dataset, including available features, outcomes, and hospital identifiers.
+
+
+
+**Readings**: In some of these papers, the methodology may be challenging. Prioritize understanding the motivation and intuition. You can use AI to help you understand the challenging parts. 
+- [Can Contrastive Learning Avoid Shortcut Solutions?](https://arxiv.org/abs/2106.11230) - Focus on the idea of feature suppression. Understand why improving representation of one feature can sometimes hurt representation of another.
+- [Which Features are Learnt by Contrastive Learning? On the Role of Simplicity Bias in Class Collapse and Feature Suppression](https://arxiv.org/abs/2305.16536) — Understand what is simplicity bias, i.e., why might a model learn an easy but unimportant feature before a harder, useful feature? Pay particular attention to the authors' discussion of embedding dimensionality and data augmentation as factors that affect feature suppression.
+- [Why do tree-based models still outperform deep learning on tabular data?](https://arxiv.org/abs/2207.08815) - Focus on the parts discussing informative feature learning.  
+- [Addressing Feature Suppression in Unsupervised Visual Representations](https://ieeexplore.ieee.org/document/10030871) - Use this paper mainly as an example of how feature suppression can be studied experimentally.
+
+
+
+**Assignments & Tasks**: 
+- Review lecture slides for this week.
+- By Wednesday, assuming you applied for it last week as expected, you should have been granted access by PhysioNet to the full eICU dataset. If you have not received an email by then, then email me and include the date you applied.
+- After you get data access, follow the rest of the instructions on ``Getting Started`` to download the data.
+- Then you should run the notebook `week1_explore_eicu_data.ipynb`. This achieves two purposes: 
+   - First, you should have a good understanding of the underlying dataset, what features are available, how they are reprsented, and what clinical labels exist. This will help you a lot as the quarter progresses. 
+   - Second, this notebook will generate the dataframe `../data/clean_dataset.parquet` which you will need for the project! 
+- For Assignment 1 (due next week): This should be done solo. All other assignments will be done in your group. 
+   - Please reread the paper from Week 0 [Addressing Feature Suppression in Unsupervised Visual Representations](https://ieeexplore.ieee.org/document/10030871) (for Part A: Read a Paper)
+   - Turn in your outputs of section *3. Section Starter: Now it's your turn!* in `week1_explore_eicu_data.ipynb` as a pdf (as this assignment's Part 2: Section Starter Task). 
+   - Ideally, you'd have finished this by 10/4 Week 2 Monday so you don't get behind for next week, but no worries if not :) 
+* For Progress Report 1 (due Saturday): Meet with your project group and submit what you all want to accomplish for Week 2. [See the website](https://web.stanford.edu/class/cs197/assignments/project.html#progress-reports) for how we expect project reports to be structured.

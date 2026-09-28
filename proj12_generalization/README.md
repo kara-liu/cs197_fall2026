@@ -231,6 +231,7 @@ AI Experience Level: **Intermediate  🧩**
 Project Type: **New Method**
 
 Last updated: **September 25, 2026** 
+
 Clinical prediction models are often trained using features $X$ whose distributions and relationships with an outcome $Y$ vary across hospitals. Some of these features may be highly predictive of $Y$ within the hospitals used for training the models, yet rely on site-specific patient populations, clinical workflows, measurement practices, or treatment patterns. Consider if hospitals collect blood pressure i measurements one way, but then are applied to a different hospital with a different workflow. A model that relies heavily on such features may therefore perform poorly when deployed at a new hospital.
 
 At the same time, variation across hospitals does not necessarily mean that a feature should be removed. A clinically important variable may differ substantially across sites while still containing useful and transportable information about the outcome. In the example above, if we are predicting hypertension, we wouldn't want to remove blood pressure measurements just because they might vary across hospital settings. Removing every feature that exhibits cross-hospital variation could therefore sacrifice both predictive performance and clinical validity.
@@ -309,7 +310,7 @@ The project has four guiding research questions (RQs):
 
 
 
-### Week 2 (10/5 - 10/11):
+<!-- ### Week 2 (10/5 - 10/11):
 
 
 **Goals:**
@@ -343,4 +344,4 @@ The project has four guiding research questions (RQs):
   - hospital-specific feature importance
 - Assignment 1 due Wednesday. Progress Report 2 due Saturday, and should describe your experiments this week. 
 - Assignment 2: Related Work assigned. Read the description on the website. Nearest neighbor papers: 
-   - 
+   -  -->
