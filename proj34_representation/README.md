@@ -302,7 +302,7 @@ The four broad project goals are:
 
 **Readings**: In some of these papers, the methodology may be challenging. Prioritize understanding the motivation and intuition. You can use AI to help you understand the challenging parts. 
 - [Can Contrastive Learning Avoid Shortcut Solutions?](https://arxiv.org/abs/2106.11230) - Focus on the idea of feature suppression. Understand why improving representation of one feature can sometimes hurt representation of another.
-- [Which Features are Learnt by Contrastive Learning? On the Role of Simplicity Bias in Class Collapse and Feature Suppression](https://arxiv.org/abs/2305.16536) — Understand what is simplicity bias, i.e., why might a model learn an easy but unimportant feature before a harder, useful feature? Pay particular attention to the authors' discussion of embedding dimensionality and data augmentation as factors that affect feature suppression.
+- [Which Features are Learnt by Contrastive Learning? On the Role of Simplicity Bias in Class Collapse and Feature Suppression](https://arxiv.org/abs/2305.16536) - Understand what is simplicity bias, i.e., why might a model learn an easy but unimportant feature before a harder, useful feature? Pay particular attention to the authors' discussion of embedding dimensionality and data augmentation as factors that affect feature suppression.
 - [Why do tree-based models still outperform deep learning on tabular data?](https://arxiv.org/abs/2207.08815) - Focus on the parts discussing informative feature learning.  
 - [Addressing Feature Suppression in Unsupervised Visual Representations](https://ieeexplore.ieee.org/document/10030871) - Use this paper mainly as an example of how feature suppression can be studied experimentally.
 
