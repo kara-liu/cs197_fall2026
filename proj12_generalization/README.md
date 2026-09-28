@@ -310,7 +310,7 @@ The project has four guiding research questions (RQs):
 
 
 
-<!-- ### Week 2 (10/5 - 10/11):
+### Week 2 (10/5 - 10/11):
 
 
 **Goals:**
@@ -325,23 +325,60 @@ The project has four guiding research questions (RQs):
 
 - [Evaluation of clinical prediction models (part 1): from development to external validation](https://www.bmj.com/content/384/bmj-2023-074819) - Focus on **internal-external cross-validation**.
 
-- Optional: Revisit [Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction](https://www.nature.com/articles/s41467-020-19551-w) - Focus on how predictive performance and feature importance change across healthcare systems.
+- Optional: Revisit [Cross-site transportability of an explainable artificial intelligence model for acute kidney injury prediction](https://www.nature.com/articles/s41467-020-19551-w) - Understand how predictive performance and feature importance change across healthcare systems.
 
 **Assignments & Tasks:**
-- Finalize the main prediction outcome(s) $Y$ that your group will use, e.g., mortality, heart attack at 48 hours, etc. Review the week1 notebook's description of timing of outcomes.Also finalize what features $X$ you want to use to predict $Y$.  
-- Identify hospitals with sufficient sample size and outcome prevalence for reliable evaluation.
-- Define your data split. You should do this several times until you find a large gap. For example, split on numer of bed counts, hospital's region in the US, etc.
-  - Training data = A set of $K$ hospitals that can be used during model development. You should have a pretty good sample size overall (i.e. > 10k patients across $K$ hospitals)
-  - Heldout data = Several (but <10) **held-out hospitals that should not be used for feature selection or model tuning**. (this was our $K+1$ above). 
-- For each outcome $Y$, train a simple baseline model using the $K$ training hospitals. For example, XGBoost or logistic regression.
-- Evaluate performance within the training distribution and separately on each held-out hospital.
-- Create at least one figure showing the **generalization gap across hospitals**, i.e., Internal training data performance minus the Held-Out hospital performance
-- Begin exploring possible explanations for the largest gaps. Do we think the biggest gap will come from:
-  - differences in patient populations
-  - outcome prevalence
-  - feature distributions
-  - missingness rates
-  - hospital-specific feature importance
+- I have a helper notebook `week2.ipynb` in your project folder to structure this analysis, which will not be due but meant to guide your experiments. 
+   * Finalize the main prediction outcome(s) $Y$ that your group will use, e.g., mortality, heart attack at 48 hours, etc. Review the week1 notebook's description of timing of outcomes.Also finalize what features $X$ you want to use to predict $Y$.  
+   - Identify hospitals with sufficient sample size and outcome prevalence for reliable evaluation.
+   - Define your data split. You should do this several times until you find a large gap. For example, split on numer of bed counts, hospital's region in the US, etc.
+   - Training data = A set of $K$ hospitals that can be used during model development. You should have a pretty good sample size overall (i.e. > 10k patients across $K$ hospitals)
+   - Heldout data = Several (but <10) **held-out hospitals that should not be used for feature selection or model tuning**. (this was our $K+1$ above). 
+   - For each outcome $Y$, train a simple baseline model using the $K$ training hospitals. For example, XGBoost or logistic regression.
+   - Evaluate performance within the training distribution and separately on each held-out hospital.
+   - Create at least one figure showing the **generalization gap across hospitals**, i.e., Internal training data performance minus the Held-Out hospital performance
+   - Begin exploring possible explanations for the largest gaps. Do we think the biggest gap will come from:
+      - differences in patient populations
+      - outcome prevalence
+      - feature distributions
+      - missingness rates
+      - hospital-specific feature importance
+- Review lecture slides for this week.
 - Assignment 1 due Wednesday. Progress Report 2 due Saturday, and should describe your experiments this week. 
-- Assignment 2: Related Work assigned. Read the description on the website. Nearest neighbor papers: 
-   -  -->
+- Assignment 2: Related Work assigned. This and all future handins are a group assignment. Read the description on the website. [Nearest neighbor papers listed here.](https://docs.google.com/document/d/10Qe-m0KK5pyykERt7R2zzxDdnpgx3WI7D3OtGlFqDv4/edit?usp=sharing)
+
+
+### Week 3 (10/12 - 10/17): 
+
+**Goals:**
+
+
+- Understand that there are multiple ways for a feature to be "unstable" across hospitals.
+- Implement several candidate measures of feature instability using only the training hospitals.
+- Compare instability across different prediction outcomes and feature groups.
+- Begin asking: what types of features appear most "stable" vs "unstable"? What measures of instability might actually be useful for predicting poor performance at a future hospital?
+
+
+**Readings:** Revisit the following papers for inspiration. What does each paper mean by a "stable" feature? Are they measuring the same thing?
+
+- Revisit **StableMate: a statistical method to select stable predictors in omics data** for the   
+  distinction between **predictive**, **stable**, and **environment-specific** variables. 
+
+- Revisit **Generalization in Clinical Prediction Models: The Blessing and Curse of Measurement Indicator Variables**  for how "stability" is defined and how variables are grouped. 
+
+- Revisit **Stable Prediction Across Unknown Environments** to understand the high-level motivation for distinguishing stable relationships from correlations that arise because of a particular training environment. You do not need to understand the full method.
+
+**Assignments & Tasks:**
+- I have a helper notebook `week3.ipynb` in your project folder to structure this analysis, which will not be due but meant to guide your experiments. 
+   * First, define candidate types of measuring cross-site "instability" (over the $K$ observed hospitals!).  For example:
+      * Marginal distributions vary across hospitals 
+      * Joint distribution vary across hospitals 
+      * Difference in rates of missingness 
+      * Differences in outcome $Y$ or conditional outcome distributions $Y\mid X_i$ for any number of covariates $X_i$. The latter could be measured for example looking at feature importance of a prediction model. 
+      * Any other ideas? 
+   * Second, find a way to measure the above ideas. For example, comparing marginal distributions of variable $X_j$ can be done thru KS tests across each hospital. Each variable $X_j$ should have on 'instability score' based on the data observed from the $K$ different training hospitals. 
+   * Third, experiment with aggregating feature types. Are all lab values more "unstable" than non-lab values? Are some feature types more stable for predicting $Y$ mortality but unstable for another outcome? Compare your results across different outcomes, dataset splits, or models. Look for patterns. 
+- Review lecture slides for this week.
+* Assignment 2 due Wednesday. Progress Report 3 due Saturday, and should describe your experiments this week. Include all figures and your group's current hypothesis for what makes a feature risky for cross-hospital generalization.
+- Assignment 3: Introduction assigned. Read the description on the website.
+
