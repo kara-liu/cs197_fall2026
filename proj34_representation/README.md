@@ -57,8 +57,8 @@ Project Goals
 **Readings**: In some of these papers, the methodology may be challenging. Prioritize understanding the motivation and intuition. You can use AI to help you understand the challenging parts. 
 - [Modeling Tabular Data using Conditional GAN](https://arxiv.org/abs/1907.00503) - Focus on Mode-Specific Normalization. Understand why the authors argue that simply scaling a continuous feature may be inadequate sometimes. 
 - [On Embeddings for Numerical Features in Tabular Deep Learning](https://arxiv.org/abs/2203.05556) - Focus on the intuition behind piecewise-linear encoding (PLE) and how this differs from giving the model a single standardized scalar.
-- [Representation Learning for Tabular Data: A Comprehensive Survey](https://arxiv.org/abs/2504.16109) -- Revisit this paper from last week. Revisit the sections discussing the unique challenges of tabular features and feature representations. Focus on how numerical and categorical features differ from other data modalities.
-- [Binning as a Pretext Task: Improving Self-Supervised Learning in Tabular Domains](http://proceedings.mlr.press/v235/lee24v.html?utm_source=chatgpt.com) -- Focus on the intuition behind quantile binning.
+- [Representation Learning for Tabular Data: A Comprehensive Survey](https://arxiv.org/abs/2504.16109) - Revisit this paper from last week. Revisit the sections discussing the unique challenges of tabular features and feature representations. Focus on how numerical and categorical features differ from other data modalities.
+- [Binning as a Pretext Task: Improving Self-Supervised Learning in Tabular Domains](http://proceedings.mlr.press/v235/lee24v.html?utm_source=chatgpt.com) - Focus on the intuition behind quantile binning.
 
 
 **Assignments & Tasks**: 
