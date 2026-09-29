@@ -159,6 +159,7 @@ The project has four guiding research questions (RQs):
    - Define your data split. You should do this several times until you find a large gap. For example, split on numer of bed counts, hospital's region in the US, etc.
    - Training data = A set of $K$ hospitals that can be used during model development. You should have a pretty good sample size overall (i.e. > 10k patients across $K$ hospitals)
    - Heldout data = Several (but <10) **held-out hospitals that should not be used for feature selection or model tuning**, except for this week. 
+   - Brief detour into handling missing values!
    - For each outcome $Y$, train a simple baseline model using the $K$ training hospitals. For example, XGBoost or logistic regression.
    - Evaluate performance within the training distribution and separately on each held-out hospital.
    - Create at least one figure showing the **generalization gap across hospitals**, i.e., Internal training data performance minus the Held-Out hospital performance.
