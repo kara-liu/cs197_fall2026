@@ -41,188 +41,9 @@ Compare against standard ERM.
 
 **Assignments:** 
 * See course website for what is due. You will typically have a progress report due Saturday evening and often an assignment due Wednesday morning. This week you have a progress report due Saturday. Since it is your first week, you may not have much to report. 
+--->
 
 
-### Weeks 1-10: TBD 
-
-<br>
-
-
-
-
-
-<!-- ### Week 1: 
-**Onboarding:** 
- - Follow the [instructions provided under "Getting Started"](../README.md) to get setup with the code and data.
- - **Important:** You will need to generate and save the full dataset using the notebook from Week 2. 
-
-
-**Readings:**
-- [In Search of Lost Domain Generalization](https://arxiv.org/pdf/2007.01434) - another benchmark paper
-- [Benchmarking Distribution Shift in Tabular Data with TableShift
-](https://proceedings.neurips.cc/paper_files/paper/2023/file/a76a757ed479a1e6a5f8134bea492f83-Paper-Datasets_and_Benchmarks.pdf) - another benchmark paper
-- [Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization](https://arxiv.org/abs/1911.08731) - methods paper we will try = group DRO
-- []()
-
-
-**Notebook:** 
-- Walk through the notebook `week1_explore_eicu_data.ipynb` to become familiar with the eICU dataset. 
-
-*For Assignment 1:*  Please read [An Empirical Characterization...]((http:/s/pmc.ncbi.nlm.nih.gov/articles/PMC7871979/)) (for Part A: Read a Paper) and turn in your outputs of section *3. Section Starter: Now it's your turn!* in `week1_explore_eicu_data.ipynb` as a pdf (as this assignment's Part 2: Section Starter Task).
-
-*For Progress Report 1:* Meet with your project group and submit what you all want to accomplish for Week 3. [See the website](https://web.stanford.edu/class/cs197/assignments/project.html#progress-reports) for how we expect project reports to be structured. -->
-<!-- 
-### Week 3: 
-**Onboarding:** 
-- By Wednesday, you should have been granted access by PhysioNet to the full eICU dataset. Email me if you have not received an email by then. 
-- You will need to generate and save the full dataset using the notebook from Week 2. 
-
-**Additional Readings:** In conjunction with the readings for Assignment 2. 
-
-- [Dissecting racial bias in an algorithm used to manage the health of populations](https://www.science.org/doi/10.1126/science.aax2342)
-- [Ensuring Fairness in Machine Learning to Advance Health Equity](https://www.acpjournals.org/doi/epdf/10.7326/M18-1990)
-- [Algorithmic fairness in computational medicine](https://pmc.ncbi.nlm.nih.gov/articles/PMC9463525/)
-
-**Video:**
-- Watch [this video](https://www.youtube.com/watch?v=MzuoWAk9_AQ) from 21:00 to 1:21:00
-
-**Notebook:** 
-- Walk through and complete the notebook `proj1/week2_fairness_evaluation.ipynb` to become familiar with algorithmic fairness calculations.
-
-*[For Assignment 2](https://web.stanford.edu/class/cs197/assignments/project.html#related-work) (Due April 16):* You will explore related work in this field. Please see the "nearest-neighbor" papers for this project [here](https://docs.google.com/document/d/10Qe-m0KK5pyykERt7R2zzxDdnpgx3WI7D3OtGlFqDv4/edit?usp=sharing). 
-
-*For Progress Report 2 (Due April 19):* Meet with your project group and submit what you all want to accomplish for Week 4. [See the website](https://web.stanford.edu/class/cs197/assignments/project.html#progress-reports) for how we expect project reports to be structured.
-
-
-### Week 4 (April 20 - 26): Is missingness informative?
-**Goal:**
-Is missingness random, or informative, in the eICU dataset?
-
-**Readings:**
-- [Imputation Strategies Under Clinical Presence: Impact on Algorithmic Fairness](https://proceedings.mlr.press/v193/jeanselme22a/jeanselme22a.pdf) - read in-depth
-- [Fairness in Missing Data Imputation](https://arxiv.org/pdf/2110.12002) - read in-depth
-- [Exploring the Inequitable Impact of Data Missingness on Fairness in Machine Learning](https://ieeexplore.ieee.org/document/10920480) - skim
-- [Adapting Fairness Interventions to Missing Values](https://arxiv.org/pdf/2305.19429) - skim
-- [Missing data and multiple imputation in clinical epidemiological research](https://pmc.ncbi.nlm.nih.gov/articles/PMC5358992/) - skim
-
-
-**Tasks**: 
-
-(Note: The `week3_fairness_tradeoffs.ipynb` notebook is now entirely optional / not required.)
-
-1. Examine the distribution of missing features (missingness frequency per feature and per patient, and then an overall histogram of missingness frequency across all features and all patients). Plot using seaborn to visualize your findings. 
-2. Analyze how missingness varies across: sex, ethnicity, age, hospital characteristics (e.g., hospitalid, region, bed count). Do certain groups systematically have more or less complete data? Use a statistical test (i.e., two-sampled KS test, see [here](https://pmc.ncbi.nlm.nih.gov/articles/PMC8327789/) if you are unfamiliar with statistical tests) and plot using seaborn to determine the answer. Furthermore, do missing values correlate across the features themselves? 
-3. Construct a "missingness attribute". For example, you can define patient groups based on if they have low / medium / high rates of feature missingness, you can cluster using KNN based on binary missingness masks. Visualize and interpret these groups.
-4. Train a classifier model using only missingness indicators (binary features) to predict mortality. Use interpretability tools (i.e., coefficients (for linear classifiers), or SHAP values (for tree-based including XGB classifiers)). Identify which missing features are most predictive and see if this makes sense given the task at hand.
-5. Based on your findings, argue if missingness is random (uninformative), or structured (reflecting clinical processes, access, or data collection differences). Relate this to MAR, MCAR, and MNAR (you should have learned about these in your assigned readings!). 
-6. Thoroughly discuss how missingness may impact (good or bad) the "standard" fairness evaluation framework.  
-
-**Deliverables:**
-* Progress Report 3 (Due April 26) - a minimum 2-page writeup plus a notebook of all the completed tasks above. As a reminder: $\checkmark+$ = 100% indicates you went above and beyond; $\checkmark$ = 95% indicates basic completeness. 
-* Introduction (Due April 23) - see website.
-
-### Week 5 (April 27 - May 3): Can missingness be a sensitive attribute?
-
-**Goal**:
-Can missingness itself be treated as a "sensitive attribute" for evaluating fairness, as an alternative or complement to race and sex?
-
-**Tasks**: 
-1. Decide on a way to categorize missingness levels (i.e., using your "missingness attribute" from Week 4). For a classifier trained to predict mortality, pick one imputaiton strategy (we will analyze this strategy further next week), and analyze the "standard" four metrics of fairness (see A2 above) using the following 3 sensitive attributes: (1) missingness category, (2) race, and (3) sex. Which missingness group perform the best and the worst? How does this performance compare to the best / worst groups defined by race and sex? 
-2. Construct intersectional subgroups: e.g., (race × missingness level), (sex × missingness level), (sex x race x missingness level). Evaluate fairness performance across these groups, and report the bootstrapped variance of these fairness metrics (so we can see how small sample size affects the consistency of fairness metrics). Summarize your findings. 
-3. Repeat these experiments where we look at a different "missingness attribute" based on a different set of feature missingness. For example, if your original category was based on missingness of ALL variables, evaluate over a new cateogry of missingness of JUST lab variables. 
-4. Reflect: Should missingness be considered a fairness-relevant attribute? Why or why not? 
-
-**Deliverables:**
-* Progress Report 4 (Due May 3) - a minimum 2-page writeup plus a notebook of all the completed tasks above 
-* (Optional) Related Works - based on this project direction, refine your current related works section to focus in on algorihtmic fairness specifically with respect to missing data. You will need to do this eventually, so might be a good idea to work on that this week. 
-
-### Week 6 (May 4 - 10): Does missing data handling affect fairness evaluations?
-
-**Goal**:
-Do different missing data handling strategies lead to different fairness conclusions?  
-
-**Tasks**:
-1. Define a fairness evaluation protocol (i.e., fix a model, split, and evaluation metrics). 
-2. Implement at least three strategies for handling missing data, such as (a) complete-case analysis - dropping all patients who have feature/s X missing, (b) simple imputation (mean/median), (c) using missingness indicators, (d) MICE or other advanced method. For each, track dataset size (how many patients remain), and track feature distributions (before vs after).
-3. Measure fairness using the four standard metrics across all group definitions (i.e., race, sex, age, missingness attribute, and intersecitonal groups). Compare how the different strategies for handling missing data affect the fairness results. 
-4. Introduce mild synthetic missingness (e.g., drop 10–20% of values randomly = MCAR or based on some attribute = MAR). Re-run preprocessing pipeline and train on this synthetically missing data, but when you evaluate, evaluate on the original dataset without the 10-20% dropped. Check whether fairness conclusions remain stable.
-5. Reflect on how missing data preprocessing affected the fairness conclusions.  
-
-**Deliverables:**
-* Progress Report 5 (Due May 10) - a minimum 2-page writeup plus a notebook of all the completed tasks above 
-
-### Week 7 (May 11 - 17): Final experiments on missingness intersectional fairness
-
-This is our last week of experiments before we start writing the final paper. So far, we have explored several related threads around missing data and algorithmic fairness. In Week 5, we observed that fairness gaps may look different when we stratify patients not only by race or sex, but also by how much data is missing for them. The goal this week is to formalize those analyses for a final paper thesis.
-
-We want to ask whether missingness itself should be treated as an additional axis of fairness. In other words, we want to know whether patients with similar race or sex labels but very different missingness patterns experience different model performance and fairness outcomes.
-
-*Note: this todo list looks long, but it is mostly just cleaning up and repeating experiments from prior weeks.*
-
-1. First, we need to make sure the general modeling setup is clear and reproducible (this was similar to task 1 last week, but I am making it more clear what needs to be done here.)
-   * First we will define two prediction tasks: (1) Mortality prediction and (2) Future troke prediction (you can also pick another health outcome; just make sure you are using *future* 24 hr - 48 hr ICD10 codes, not the diagnoses within the first 24 hrs.) For each task, use approximately 15-100 features $X$ to predict the two outcomes $Y$. You should not include race or hospital beds in the prediction task (sex is ok). 
-   * For the paper appendix, you should a table listing: the features used for each prediction task, missingness distribution of the features (as well as the top and bottom 10 missing features). Also explictly document the missingness rates of all sensitive attributes and all outcomes.
-   * For this first baseline analysis, use either mean or median imputation for numerical variables, and use the most frequent category. For now, also use simple handling of missing values in Y and sensitive attributes A.
-   * Train models for both prediction tasks using either: LogisticRegressionCV (sklearn) or XGBoostClassifier. Use a train / validation split. All fairness metrics should be reported on the validation set.
-   * For each task, report average AUPRC plus standard fairness metric gaps (see below) across the following 3 sensitive attributes: race, sex, number of hospital beds, treated as a proxy for hospital capacity.
-   * The fairness metrics should include calibration gap, and equalized odds gap (TPR gap). (Ask yourself: why do we care about these two metrics specifically here?) For each metric, report the gap as the difference between the maximum group value and the minimum group value. For example, for equalized odds, report the fairnes gap $g_{TPR}$ as $$g_{TPR} = \max_{a \in A} TPR(a) - \min_{a \in A} TPR(a)$$ for sensitive attribute/s based groups $A$. 
-      
-   * The main result from this section should be a table with: 2 prediction tasks x 2 fairness metrics x 3 sensitive attributes.
-
-      You should also report the number of groups for each sensitive attribute, the group with the minimum metric value, and the group with the maximum metric value.
-
-      This table gives us the baseline fairness audit that a standard algorithmic fairness paper might report.
-2. Next, we will extend the fairness audit by treating missingness as an additional fairness-relevant attribute. Instead of only evaluating fairness across race, sex, and hospital bed count, we will evaluate fairness across intersectional groups of the form: sensitive attribute x missingness group. We previously explored this in Week 5. 
-
-   * For the final project, we will only define missingness using variables from the following data sources: patient data, hospital data, labs.
-   * First, recompute the missingness percentages from Week 5. Then define binned missingness groups as low, medium, and high missingness based on tertiles of their missingness percentage.
-   * Second, define missingness clusters using the missingness matrix R, where each row is a patient and each column corresponds to whether a variable is missing. Apply PCA to the missingness matrix. Cluster patients using KMeans on the top principal components. Try multiple values of K and use an elbow plot or silhouette score to pick a reasonable number of clusters.
-   * Then recompute the standard fairness table, but now using the 6 new intersectional missingness groups: race x binned, race x KMeans missingness cluster,... etc. 
-   * Are any gaps larger? Do we learn any new unfairness patterns across race (i.e. race x missingess has higher gaps than just race alone) We are especially interested in cases where the race-only or sex-only fairness gap appears small, but the race x missingness or sex x missingness gap is large. Those cases would support the argument that traditional fairness audits can miss clinically meaningful model failures related to missing data.
-
-
-3. Next, we will evaluate whether the observed fairness gaps are stable across different imputation methods. We have results on median / mean imputation. Repeat all evaluation above  MICE imputation. Note: The imputation procedure (mean imputation, MICE, etc. ) should be fit only on the training data and then applied to the validation data. 
-
- 4. In the prior experiments, missingness mainly enters the analysis through imputation and group stratification. In this final experiment, we will explicitly add missingness indicators as model features and compare the results to models that only use imputed clinical values. For each task and for mean imputation strategy, double the features of $X$ where each feature $X_j$ also now has the missingness indictator $R_j = 1$ if feature $X_j$ was missing before imputation and $R_j = 0$ otherwise. Compare both the average AUPRC performance plus the two standard fairness metric gaps. Based on these results, we can assess: 
-      * If adding missingness indicators improves overall performance but worsens fairness gaps, this suggests the model may be exploiting missingness patterns in a way that benefits some groups more than others.
-      * If adding missingness indicators barely changes performance or fairness, this suggests that the original imputed values may already capture most of the relevant missingness information.
-      * ... etc. 
-
-### Week 8 (May 18–24): Collecting Results, Tables, and Figures
-
-This week, we should move from trying new analyses to organizing the evidence we already have. As you write the results section, start discussing with your group on what the narrative of the paper is, and how to build the results section to support this narrative. 
-
-For example, the reults should include clean tables / figures of: 
-   * A standard fairness audit table.
-   * A missingness-aware (intersectional groups) fairness audit table.
-   *  An imputation comparison table.
-   *  A missingness-indicator comparison table.
-
-In addition to the tables, you should also make one or two clear plots summarizing the most important fairness gap comparisons from above. For example: 
-- bar plots comparing standard fairness gaps versus missingness-aware fairness gaps,
-- heatmaps of fairness gaps by task, metric, and group definition,
-- (optional) missingness cluster interpretation plots - what does each missingness cluster represent in terms of patient cohorts? This might be helpful for justifying your conclusions
-- plots showing how fairness gaps change across imputation methods,
-- plots comparing imputed-values-only models to imputed-values-plus-missingness-indicator models.
-
-Every possible plot will not be included in the main paper, but we would like to organize all results so that we can decide which findings are central, which belong in the appendix, and which should be dropped.
-
- Also write a short outline of the Results section: What is the main story? Does missingness reveal fairness failures that are hidden by standard demographic audits? Are the results consistent across tasks and imputation methods?
-
-
-### Week 9 (May 25–31): Writing the First Full Draft
-
-This week, the goal is to turn the results into a first full draft of the paper. Start with the Methods and Results sections, since these should be directly grounded in the experiments. The Methods section should clearly explain the prediction tasks, feature sets, imputation methods, fairness metrics, missingness group definitions, and missingness-indicator experiment. The Results section should walk the reader through the standard fairness audit, the missingness-aware fairness audit, the imputation comparison, and the model comparison with versus without missingness indicators.
-
-After Methods and Results are drafted, work on the Introduction and framing. The paper should motivate the problem as follows: standard fairness audits often focus on demographic groups such as race and sex, but in clinical data, missingness patterns may reflect differences in measurement, access, severity, hospital practice, or data quality. Our project asks whether missingness should be treated as an additional fairness-relevant attribute, and whether ignoring it can hide model failures. By the end of the week, please have a complete rough draft with all major sections: Introduction, Related Work if applicable, Methods, Experimental Setup, Results, Discussion, and Limitations.
-
-
-### Week 10 (June 1–7): Final Writing, Polishing, and Presentation
-
-This week, the goal is to finish the paper and prepare the final presentation. 
-<!-- Focus on making the writing clear, tightening the main claim, and making sure every claim is supported by a table, figure, or concrete result. The final paper should clearly explain what standard fairness audits show, what additional information is revealed by missingness-aware groups, and how imputation or missingness indicators change the conclusions.
-
-Please also polish the figures, table captions, and appendix materials. The appendix should include feature lists, missingness rates, cohort details, and any additional fairness tables that are too large for the main paper. The final presentation should tell the same story as the paper in a simpler form: what question we asked, why missingness matters for fairness, what experiments we ran, what we found, and what the limitations are. --> 
 
 
 ## <a id="proj2"></a> Project 2: Feature Selection for Cross-Hospital Generalization
@@ -230,7 +51,7 @@ AI Experience Level: **Intermediate  🧩**
 
 Project Type: **New Method**
 
-Last updated: **September 25, 2026** 
+Last updated: **September 28, 2026** 
 
 Clinical prediction models are often trained using features $X$ whose distributions and relationships with an outcome $Y$ vary across hospitals. Some of these features may be highly predictive of $Y$ within the hospitals used for training the models, yet rely on site-specific patient populations, clinical workflows, measurement practices, or treatment patterns. Consider if hospitals collect blood pressure i measurements one way, but then are applied to a different hospital with a different workflow. A model that relies heavily on such features may therefore perform poorly when deployed at a new hospital.
 
@@ -263,6 +84,7 @@ The project has four guiding research questions (RQs):
    Are particular feature classes—such as physiologic measurements, procedures, medications, missingness indicators, or healthcare-process variables—systematically more unstable or more harmful to cross-hospital transportability?
 
 
+---
 
 ### Week 0 (9/21 - 9/27): 
 **Onboarding:** 
@@ -276,6 +98,8 @@ The project has four guiding research questions (RQs):
 
 **Assignments:** 
 * See course website for what is due. You will typically have a progress report due Saturday evening and often an assignment due Wednesday morning. This week you have a progress report due Saturday. Since it is your first week, you may not have much to report. 
+
+---
 
 ### Week 1 (9/28 - 10/3):
 
@@ -309,6 +133,7 @@ The project has four guiding research questions (RQs):
 * For Progress Report 1 (due Saturday): Meet with your project group and submit what you all want to accomplish for Week 2. [See the website](https://web.stanford.edu/class/cs197/assignments/project.html#progress-reports) for how we expect project reports to be structured.
 
 
+---
 
 ### Week 2 (10/5 - 10/11):
 
@@ -333,10 +158,10 @@ The project has four guiding research questions (RQs):
    - Identify hospitals with sufficient sample size and outcome prevalence for reliable evaluation.
    - Define your data split. You should do this several times until you find a large gap. For example, split on numer of bed counts, hospital's region in the US, etc.
    - Training data = A set of $K$ hospitals that can be used during model development. You should have a pretty good sample size overall (i.e. > 10k patients across $K$ hospitals)
-   - Heldout data = Several (but <10) **held-out hospitals that should not be used for feature selection or model tuning**. (this was our $K+1$ above). 
+   - Heldout data = Several (but <10) **held-out hospitals that should not be used for feature selection or model tuning**, except for this week. 
    - For each outcome $Y$, train a simple baseline model using the $K$ training hospitals. For example, XGBoost or logistic regression.
    - Evaluate performance within the training distribution and separately on each held-out hospital.
-   - Create at least one figure showing the **generalization gap across hospitals**, i.e., Internal training data performance minus the Held-Out hospital performance
+   - Create at least one figure showing the **generalization gap across hospitals**, i.e., Internal training data performance minus the Held-Out hospital performance.
    - Begin exploring possible explanations for the largest gaps. Do we think the biggest gap will come from:
       - differences in patient populations
       - outcome prevalence
@@ -347,22 +172,20 @@ The project has four guiding research questions (RQs):
 - Assignment 1 due Wednesday. Progress Report 2 due Saturday, and should describe your experiments this week. 
 - Assignment 2: Related Work assigned. This and all future handins are a group assignment. Read the description on the website. [Nearest neighbor papers listed here.](https://docs.google.com/document/d/10Qe-m0KK5pyykERt7R2zzxDdnpgx3WI7D3OtGlFqDv4/edit?usp=sharing)
 
+---
 
-### Week 3 (10/12 - 10/17): 
+### Week 3 (10/12 - 10/18): 
 
 **Goals:**
-
-
 - Understand that there are multiple ways for a feature to be "unstable" across hospitals.
 - Implement several candidate measures of feature instability using only the training hospitals.
 - Compare instability across different prediction outcomes and feature groups.
 - Begin asking: what types of features appear most "stable" vs "unstable"? What measures of instability might actually be useful for predicting poor performance at a future hospital?
 
 
-**Readings:** Revisit the following papers for inspiration. What does each paper mean by a "stable" feature? Are they measuring the same thing?
-
+**Readings:** I suggest revisiting the following papers for inspiration. What does each paper mean by a "stable" feature? 
 - Revisit **StableMate: a statistical method to select stable predictors in omics data** for the   
-  distinction between **predictive**, **stable**, and **environment-specific** variables. 
+  distinction between predictive, stable, and environment-specific variables. 
 
 - Revisit **Generalization in Clinical Prediction Models: The Blessing and Curse of Measurement Indicator Variables**  for how "stability" is defined and how variables are grouped. 
 
@@ -370,15 +193,212 @@ The project has four guiding research questions (RQs):
 
 **Assignments & Tasks:**
 - I have a helper notebook `week3.ipynb` in your project folder to structure this analysis, which will not be due but meant to guide your experiments. 
-   * First, define candidate types of measuring cross-site "instability" (over the $K$ observed hospitals!).  For example:
-      * Marginal distributions vary across hospitals 
-      * Joint distribution vary across hospitals 
-      * Difference in rates of missingness 
-      * Differences in outcome $Y$ or conditional outcome distributions $Y\mid X_i$ for any number of covariates $X_i$. The latter could be measured for example looking at feature importance of a prediction model. 
+   * First, define candidate metrics to capture per-variable cross-site "instability" (over the $K$ observed hospitals!).  For example, measuring if for a given variable $X_j$:
+      * Marginal distributions of $X_j$ vary across hospitals 
+      * Difference in rates of missingness for variable $X_j$
+      * Joint distribution ($X_j$ and $X_i$ for all $i$) vary across hospitals 
+      * Differences in the conditional outcome distributions $Y\mid X_j$. Caution, however, as this may overlap with measuring predictive utility. 
       * Any other ideas? 
    * Second, find a way to measure the above ideas. For example, comparing marginal distributions of variable $X_j$ can be done thru KS tests across each hospital. Each variable $X_j$ should have on 'instability score' based on the data observed from the $K$ different training hospitals. 
    * Third, experiment with aggregating feature types. Are all lab values more "unstable" than non-lab values? Are some feature types more stable for predicting $Y$ mortality but unstable for another outcome? Compare your results across different outcomes, dataset splits, or models. Look for patterns. 
 - Review lecture slides for this week.
-* Assignment 2 due Wednesday. Progress Report 3 due Saturday, and should describe your experiments this week. Include all figures and your group's current hypothesis for what makes a feature risky for cross-hospital generalization.
+- Assignment 2 due Wednesday. Progress Report 3 due Saturday, and should describe your experiments this week. Include all figures and your group's current hypothesis for what makes a feature risky for cross-hospital generalization.
 - Assignment 3: Introduction assigned. Read the description on the website.
 
+---
+
+### Week 4 (10/19 - 10/25): 
+
+**Goals:**
+
+- Determine which measures of feature instability from Week 3 appear most relevant to cross-hospital generalization & thus can ideal for generalizable feature selection. 
+- Study the tradeoff between a feature's **predictive utility** and its **cross-site instability**.
+- Narrow the exploratory results from Week 3 into 1–2 concrete hypotheses about what makes a feature risky for generalization.
+- Main question: *Using only data across the training hospitals, can we propose properties of a feature $X_j$ to help us anticipate if including that feature in the model will improve or hurt performance at another unseen hospital?*
+
+
+**Assignments & Tasks:** Note, no more helper notebooks.
+- First, start by creating a measurment for how useful (the *predictive utility*) a feature is in predicting a specific outcome $Y$ for a specific model. Again, this should be computed using only data from the $K$ hospitals. 
+- Compare predictive utility measurement to instability / "non-generalizability" measurements. Try creating scatter plots where the x-axis is instability, y-axis is utility, and points are all variables $X_j$.
+   - Pay particular attention to features that are: highly predictive and transport well; OR highly predictive but do not transport well. These are the features most relevant to the eventual feature-selection method.
+- Use "leave-one-hospital-out" experiments ie. similar to K-fold cross validation. Here you train $K$ models on all but the $i$ th hospital for all $K$ hospitals. This imitates the heldout hospital dataset without peeking into that dataset. You can use this setting to compute if feature utility / instability actually predicts unseen hospital genearlization gap. 
+ - Some simple experiment ideas: Compare models using the **most stable** vs. **most unstable** features. What is the genearlization gap? Among features with similar predictive utility, compare more-stable vs. less-stable features.
+- Start formulating hypotheses based on the experiments above. For example:
+   -  Missingness and healthcare-process variables are disproportionately represented among features that are both highly predictive and highly unstable.
+   - This hypothesis should be supported by preliminary evidence from this week's experiments.
+- In your progress report, include all figures and hypotheses. You should be able to provide an answer to: Which definition of feature instability currently seems most useful for anticipating poor cross-hospital generalization, and why?
+- Review lecture slides for this week.
+- Assignment 3 due Wednesday. Progress Report 4 due Saturday, and should describe your experiments this week. 
+
+---
+
+### Week 5 (10/26 - 11/1): 
+
+**Goals:**
+
+- Translate the Week 4 hypothesis into a concrete feature-selection method / ranking of features based on a feature-based score.
+- Decide how predictive utility and cross-site instability should be quantified and combined.
+- Implement the proposed method using only the training hospitals.
+- Verify that the method behaves sensibly within the $K$ training sets using leave-one-out validation before large-scale evaluation + extrapolation to the unseen heldout test data. 
+
+**Assignments & Tasks:** 
+
+
+- Finalize the primary definition(s) of predictive utility, feature instability, and the proposed combined feature score.
+
+- Implement your proposed stability-aware feature-selection method. Use the score the pick some amount of features that have the highest utility and lowest instability. There are a lot of hyperparameters here for you to try! For example:
+  - top `m` features
+  - a score threshold
+  - varying `lambda` in `Utility - lambda × Instability`
+- Use leave-one-training-hospital-out validation of the $K$ hospitals to choose reasonable hyperparameters without using the final held-out hospitals.
+- This part is important: Inspect the selected features qualitatively:
+  - Which features are consistently ranked as "keep for the model"?
+  - Which highly predictive features are removed? Is there any pattern to them? 
+  - Do the selections make clinical and statistical sense?
+* Produce severeal initial figures showing : the proposed feature score for all features and all feature types; how the selected features changes as the strength of the stability penalty lambda increases; how varying $m$ might change things
+* Try for a different outcome $Y$, or a different type of model.
+* Review lecture slides for this week.
+* Progress Report 5 due Saturday.
+
+---
+
+### Week 6 (11/2- 11/8): 
+
+**Goals:**
+- Identify appropriate baselines for comparison, that make the same assumption as our method does. 
+- Finalize the evaluation metrics and experimental protocol.
+- Ensure that all methods use exactly the same train/validation/heldout splits.
+- Freeze the experimental design before running the main evaluation.
+
+**Assignments & Tasks:** 
+
+- Decide on the main feature-selection baselines. Then implement them in code you can easily run.
+  - OUR APPROACH 
+  - use all features
+  - predictive-utility-only selection
+  - stability-only selection
+  - hospital-identifiability-based selection (ie. features that predict hospital id the least amount)
+  - ... other ideas?
+
+- Use the same downstream prediction models for every feature-selection method: eg try logistic regression, XGBoost, maybe an MLP
+
+- Finalize primary evaluation metrics: AUROC, AUPRC, Brier score / calibration, generalization gap. 
+- Finalze evaluation strategy: If we have say $M$ unseen hospitals in the heldout dataset, how do we know if a model generalizes well to all $M$? Do we care about worst-case performance? Do we take the median? Which of the above evaluation metrics should we prioritize? 
+   - Also: Should we care about a model's performance on an unseen hospital, eg for accuracy `Heldout_Accuracy`, or the generalizaiton gap between `Training_Accurracy - Heldout_Accuracy`?
+   - Note, there is no specific answer you should give. Justify all choices you make. 
+- Finalize the hospital splits (train/validation/heldout) and prediction outcomes used in the main experiments.
+
+- Decide how many features each method should select so that comparisons are fair. (If we have one baseline select 10 features for predicting Y, but our method selects 20, then our method has more parameters in our model so this is a confounder!)
+- Write down the final evaluation protocol before getting results or testing on the heldout hospitals.
+- Review lecture slides for this week.
+- Progress Report 6 due Saturday.
+
+
+---
+
+### Week 7 (11/9- 11/15): 
+
+**Goals:**
+
+- Run and compare your proposed feature-selection method / scoring function against all baselines.
+- Evaluate whether improvements generalize across multiple unseen hospitals.
+- Test whether results are consistent across prediction tasks and model classes.
+- Identify where the proposed method succeeds and where it fails.
+
+**Assignments & Tasks:** 
+- Run every feature-selection method on the finalized hospital splits.
+
+- Evaluate each selected feature set using all model types (ie. XGBoost ...)
+
+- Repeat the evaluation across:
+  - all held-out hospitals
+  - multiple outcomes, if available
+  - multiple feature-set sizes
+
+- Create the primary results table comparing internal and held-out-site performance.
+
+- Create a figure showing performance across held-out hospitals for each feature-selection strategy.
+
+- Identify the settings where:
+  - our approach improves generalization
+  - it performs similarly to standard feature selection
+  - it performs worse
+
+- Write 2–3 preliminary conclusions supported directly by the main experiments.
+- Review lecture slides for this week.
+- Progress Report 7 due Saturday. Last one!
+- Assignment 4: Evaluation Plan is released. Check the webpage for details. [Note: Assignment 5: Draft Paper due in 2 weeks during Thanksgiving break.]
+
+
+
+---
+### Week 8 (11/16- 11/22): 
+
+**Goals:**
+
+- Determine whether the main findings are robust to other reasonable analysis choices. This is sometimes called "ablations" in CS research. The goal is to understand which parts of the proposed method are actually responsible for its performance.
+- Quantify the tradeoff between internal predictive performance and external generalization.
+
+**Assignments / Project Tasks:**
+
+- Think of any ablations of the proposed method to try. I.e. vary lambda, vary the instaiblity metric by a little bit... Plot the results in a table or figure. In other words, test sensitivity to alternative instability definitions or hyperparameter choices.
+
+- CRUCIAL: Analyze the internal-versus-external performance tradeoff:
+  - Vary the number of selected features $m$ and plot the resulting performance curves.
+  - Does increasing stability reduce internal performance (i.e. average AUROC on the validation set in the $K$ hospitals)?
+  - Is there a region where external performance improves with little internal cost? (look up "pareto curves")
+
+- Summarize which components of the proposed method appear necessary and which provide little additional value.
+
+- Check whether results are driven by:
+  - one unusually difficult hospital
+  - one prediction task
+  - one model class
+- Produce some final figures and tables needed for the paper -- you will need this for submitting the Draft Paper! 
+- Review lecture slides for this week.
+* No Progress Report!
+* Assignment 4: Evaluation Plan is due Wednesday.
+* Assignment 5: Draft Paper is released and due next Wednesday. Check webpage for details. Plan accordingly.
+
+
+---
+### THANKSGIVING BREAK (11/23- 11/29): 
+For this week, you can optionally get started on Week 9 so you have more time to write/prepare next week, or you can take the week off but have to do experiments and writing next week. It is up to you. 
+
+**Assignments & Tasks:** 
+* You can review the lecture slides either this week or next week.
+* No Progress Report!
+* Assignment 5: Draft Paper is due Wednesday.
+* Assignment 6: Draft Talk is released and due next Wednesday. Check webpage for details. 
+
+
+---
+### Week 9 (11/30- 12/6): 
+**Goals:**: 
+- Understand **why** certain features generalize poorly.
+- Finalize the scientific interpretation of the results.
+- Finalize all final figures and tables needed for the paper.
+- Turn the project into a coherent research paper & research talk. You got this!
+
+**Assignments & Tasks:** 
+
+- Compare instability and selection rates across feature categories, ie. demographics, labs, vitals, diagnoses, procedures, meds, missingness, workflow / hospital variables 
+- Identify features that are:
+  - highly predictive and stable
+  - highly predictive but unstable
+  - frequently removed or kept by your proposed method
+- Investigate whether specific feature categories disproportionately contribute to large generalization gaps. Why do you think this is the case? 
+   - Are there any experiments you can do to test this?
+* Finalize the main figures and tables for the paper.
+* Review lecture slides for Publication and Peer Review.
+* No Progress Report!
+* Assignment 6: Draft Talk is due Wednesday.
+
+---
+
+### Week 10 (12/7- 12/11): 
+**Goals:**: 
+- Turn the project into a coherent research paper & research talk. You got this!
+
+**Assignments & Tasks:** 
+* Final Talk in class 12/11 during the final exam slot. Final Paper due evening of 12/11. See website for more details on what is expected. 
