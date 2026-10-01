@@ -23,7 +23,7 @@ I recommend consulting the blog post by [Lilian Weng here.](https://lilianweng.g
 Variational autoencoders (VAEs) are generative models that learn a latent representation of high-dimensional data. Given an observation $x \in \mathbb{R}^d$, a VAE represents it using a latent variable $z \in \mathbb{R}^k$, often with $k < d$. Similar to a standard autoencoder, the model consists of an **encoder**, which maps the observed data into a latent space, and a **decoder**, which attempts to reconstruct the original observation from its latent representation.
 
 A key difference from a standard autoencoder is that the encoder does not map each observation $x$ to a single deterministic point $z$. Instead, it learns a **distribution** over possible latent representations. A common choice is a Gaussian distribution,
-$$q_\phi(z \mid x)=\mathcal{N}\left(\mu_\phi(x), \operatorname{diag}(\sigma_\phi^2(x))\right),$$
+$$q_\phi(z \mid x)=\mathcal{N}\left(\mu_\phi(x),\text{diag}(\sigma_\phi^2(x)\right)),$$
 where the encoder neural network, parameterized by $\phi$, predicts a mean $\mu_\phi(x)$ and variance $\sigma_\phi^2(x)$ for each input. We then sample a latent representation $z$ from this distribution.
 
 
@@ -32,19 +32,8 @@ where the encoder neural network, parameterized by $\phi$, predicts a mean $\mu_
 The decoder, parameterized by $\theta$, then models the distribution that describes how an observation $x$ can be generated from its latent representation $z$:
 $$p_\theta(x \mid z),$$
 
-During training, the VAE tries to maximize the probability of the data $$p(x)$$, which would essentially equate to : "Maximize the model that fits our observed data $x$". However, this is actually impossible to maximize. So to do this, a VAE instead learns parameters $\phi$ and $\theta$ and maximizes the *evidence lower bound (ELBO)*,
-$$\mathcal{L}_{\mathrm{ELBO}}(x)
-=
-\mathbb{E}_{q_\phi(z\mid x)}
-\left[
-\log p_\theta(x\mid z)
-\right]
--
-D_{\mathrm{KL}}
-\left(
-q_\phi(z\mid x)
-\,\|\, p(z)
-\right),$$
+During training, the VAE tries to maximize the probability of the data $p(x)$, which would essentially equate to : "Maximize the model that fits our observed data $x$". However, this is actually impossible to maximize. So to do this, a VAE instead learns parameters $\phi$ and $\theta$ and maximizes the *evidence lower bound (ELBO)*,
+$$\mathcal{L}_{\mathrm{ELBO}}(x)=\mathbb{E}_{q_\phi(z\mid x)}\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x)\,\|\, p(z)\right),$$
 
 The prior (= assumed distribuiton) for the latent vector $z$ is typically chosen as Gaussian: $p(z) = \mathcal{N}(0,I)$.
 
