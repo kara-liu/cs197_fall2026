@@ -24,9 +24,15 @@ Variational autoencoders (VAEs) are generative models that learn a latent repres
 
 A key difference from a standard autoencoder is that the encoder does not map each observation $x$ to a single deterministic point $z$. Instead, it learns a **distribution** over possible latent representations. A common choice is a Gaussian distribution,
 
-$$q_\phi(z \mid x)=\mathcal{N}\left(\mu_\phi(x),\text{diag}(\sigma_\phi^2(x)\right)),$$
+$$q_\phi(z \mid x)=\mathcal{N}\left(\mu_\phi(x),\text{diag}(\sigma_\phi^2(x))\right),$$
 
 where the encoder neural network, parameterized by $\phi$, predicts a mean $\mu_\phi(x)$ and variance $\sigma_\phi^2(x)$ for each input. We then sample a latent representation $z$ from this distribution.
+
+$$\mathcal{L}_{\mathrm{ELBO}}(x)$$
+$$\mathbb{E}_{q_\phi(z\mid x)}$$
+
+
+$$\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x) \ \Vert \, p(z)\right),$$
 
 
 > **A bit of some tricky math!!** To allow gradients to propagate through this sampling operation, VAEs use the \textbf{reparameterization trick}. Rather than sampling the latent $z$ directly, we sample a much easier normal noise variable $\epsilon \sim \mathcal{N}(0,I)$. Since $z$ is gaussian i.e., $z=\mu_\phi(x)+\sigma_\phi(x) \odot \epsilon$, randomness is therefore isolated in $\epsilon$, while $z$ remains a differentiable function of the encoder outputs.
@@ -35,7 +41,9 @@ The decoder, parameterized by $\theta$, then models the distribution that descri
 $$p_\theta(x \mid z),$$
 
 During training, the VAE tries to maximize the probability of the data $p(x)$, which would essentially equate to : "Maximize the model that fits our observed data $x$". However, this is actually impossible to maximize. So to do this, a VAE instead learns parameters $\phi$ and $\theta$ and maximizes the *evidence lower bound (ELBO)*,
-$$\mathcal{L}_{\mathrm{ELBO}}(x)=\mathbb{E}_{q_\phi(z\mid x)}\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x)\,\|\, p(z)\right),$$
+
+
+$$\mathcal{L}_{\mathrm{ELBO}}(x)=\mathbb{E}_{q_\phi(z\mid x)}\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x) \ \Vert \, p(z)\right),$$
 
 
 The prior (= assumed distribuiton) for the latent vector $z$ is typically chosen as Gaussian: $p(z) = \mathcal{N}(0,I)$.
