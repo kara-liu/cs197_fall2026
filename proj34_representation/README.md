@@ -28,12 +28,6 @@ $$q_\phi(z \mid x)=\mathcal{N}\left(\mu_\phi(x),\text{diag}(\sigma_\phi^2(x))\ri
 
 where the encoder neural network, parameterized by $\phi$, predicts a mean $\mu_\phi(x)$ and variance $\sigma_\phi^2(x)$ for each input. We then sample a latent representation $z$ from this distribution.
 
-$$\mathcal{L}_{\mathrm{ELBO}}(x)$$
-$$\mathbb{E}_{q_\phi(z\mid x)}$$
-
-
-$$\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x) \ \Vert \, p(z)\right),$$
-
 
 > **A bit of some tricky math!!** To allow gradients to propagate through this sampling operation, VAEs use the \textbf{reparameterization trick}. Rather than sampling the latent $z$ directly, we sample a much easier normal noise variable $\epsilon \sim \mathcal{N}(0,I)$. Since $z$ is gaussian i.e., $z=\mu_\phi(x)+\sigma_\phi(x) \odot \epsilon$, randomness is therefore isolated in $\epsilon$, while $z$ remains a differentiable function of the encoder outputs.
 
@@ -43,13 +37,13 @@ $$p_\theta(x \mid z),$$
 During training, the VAE tries to maximize the probability of the data $p(x)$, which would essentially equate to : "Maximize the model that fits our observed data $x$". However, this is actually impossible to maximize. So to do this, a VAE instead learns parameters $\phi$ and $\theta$ and maximizes the *evidence lower bound (ELBO)*,
 
 
-$$\mathcal{L}_{\mathrm{ELBO}}(x)=\mathbb{E}_{q_\phi(z\mid x)}\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x) \ \Vert \, p(z)\right),$$
+$$\mathcal{L}_{\mathrm{ELBO}}(x)=\mathbb{E}_{q_\phi(z\mid x)}\left[\log p_\theta(x\mid z)\right] -D_{\mathrm{KL}}\left(q_\phi(z\mid x) \, \Vert \, p(z)\right),$$
 
 
 The prior (= assumed distribuiton) for the latent vector $z$ is typically chosen as Gaussian: $p(z) = \mathcal{N}(0,I)$.
 
 
-The first term in the ELBO ($\mathbb{E}_{q_\phi(z\mid x)}\left[\log p_\theta(x\mid z)\right]$)  encourages the latent representation to preserve information needed to reconstruct $x$. The second term (the KL part, which stands for Kullback–Leibler divergence) encourages the learned latent distributions to remain close to the prior distribution. Together, these objectives encourage the VAE to learn a latent space that preserves important information about the input while remaining structured enough to sample from and generate new observations.
+The first term in the ELBO encourages the latent representation to preserve information needed to reconstruct $x$. The second term (the KL part, which stands for Kullback–Leibler divergence) encourages the learned latent distributions to remain close to the prior distribution. Together, these objectives encourage the VAE to learn a latent space that preserves important information about the input while remaining structured enough to sample from and generate new observations.
 
 After training, the encoder can therefore be used as a representation-learning model: for each observation $x$, quantities such as the posterior mean $\mu_\phi(x)$ can be used as a learned feature representation for downstream tasks such as prediction, clustering, or visualization.
 
