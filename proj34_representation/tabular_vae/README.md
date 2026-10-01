@@ -9,9 +9,6 @@ First, make sure you are in the cs197 conda environment. Then install:
 pip install torch
 pip install wandb        # optional, only if you want experiment tracking
 ```
-Then in your ter
-## Run it
-
 
 **Weights & Biases:** in the settings cell set `USE_WANDB = True`, and run `wandb login` once.
 
@@ -23,6 +20,7 @@ Then in your ter
 | `encoders.py` | Only relevant for Project 3!! Turns one continuous variable into `m >= 1` dimensional encoding. For example, `StandardEncoder` (m = 1) and `ModeSpecificEncoder` (m = 1 + number of peaks). |
 | `preprocessing.py` | `TabularPreprocessor`: one-hot encodes categoricals, applies one encoder per continuous column, builds the design matrix, and then can recover the original, raw values. |
 | `vae.py` | `TabularVAE` (encoder, sampling, decoder) and `vae_loss`. |
+| `scarf_model.py` | Only relevant for Project 4. SCARF model |
 
 After `TabularPreprocessor`, each preprocessed row of patient data looks like this:
 

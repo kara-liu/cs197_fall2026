@@ -340,7 +340,7 @@ The project has four guiding research questions (RQs):
 - Determine whether the main findings are robust to other reasonable analysis choices. This is sometimes called "ablations" in CS research. The goal is to understand which parts of the proposed method are actually responsible for its performance.
 - Quantify the tradeoff between internal predictive performance and external generalization.
 
-**Assignments / Project Tasks:**
+**Assignments & Tasks:**
 
 - Think of any ablations of the proposed method to try. I.e. vary lambda, vary the instaiblity metric by a little bit... Plot the results in a table or figure. In other words, test sensitivity to alternative instability definitions or hyperparameter choices.
 
